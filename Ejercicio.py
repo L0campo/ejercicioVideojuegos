@@ -38,10 +38,34 @@ def view_games():
 
 
 def complete_game():
+    print("----Juegos Completados y Por Completar----")
+    if juegos:
+          
+          for i, (nombre,genero,jugado) in enumerate(juegos):
+              estado = "✓" if jugado else "✗"
+              print(f"{i+1}: {nombre} ({genero}) [{estado}]")
+          i=int(input("ingrese el numero del juego para marcarlo como completado: "))
+          i=i-1
+
+          if 0<= i <= len(juegos) :
+              nombre,genero,jugado= juegos[i]
+              juegos[i]= (nombre,genero,True)
+              print(f"✅ {nombre} ha sido completado exitosamente")
+            
+          else :
+              print("error intente de nuevo")
+              complete_game()
+
+
+    else :
+        print("no hay juegos")
+
+   
+   
     # Usar if not para lista vacía
     # Usar >= y <= para validar índice
     # Modificar tupla en lista
-    pass
+    
 
 def show_stats():
     # Usar for para contar
@@ -79,7 +103,10 @@ while isActive:
                 clear_screen()
 
             case 3:
-                pass
+                clear_screen()
+                complete_game()
+                input("precione Enter para continuar...")
+                clear_screen()
 
             case 4:
                 pass
