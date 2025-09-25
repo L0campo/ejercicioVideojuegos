@@ -1,11 +1,11 @@
 import os
-os.system("clear")
+os.system('cls' if os.name == 'nt' else 'clear')
 
 # Lista global para juegos
 juegos = []
 
 def clear_screen():
-    os.system("clear")
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def menu():
@@ -17,29 +17,25 @@ def menu():
     print("0.salir")
 
 
-# Usar input() y return
-def add_game():
-    global juegos  
+
+def add_game():  
+    print("---Agregar juego---")
     nom=input("ingrese nombre del juego: ") # Usar input() para datos
     gen=input("ingrese genero del juego: ")
     New=(nom,gen,False)# Crear tupla (nombre, genero, False)
     juegos.append(New)# Usar append() en lista
+    print("el juego se ingesado con exito")
 
-
-
-    pass
 
 def view_games():
-    if juegos > 0:
-        print("\nLista numerada:")
-        contador = 1
-        for juegos in juegos:
-            print(f"{contador}. {juegos}")
-            contador += 1
-    # Usar if not para verificar lista vacía
-    # Usar for con enumerate()
-    # Desempaquetar tupla
-    pass
+        print("---Tu Colección---")
+        if juegos:# Usar if not para verificar lista vacía
+             for i, (nombre,genero,jugado) in enumerate(juegos):# Usar for con enumerate()
+              estado = "✓" if jugado else "✗"
+              print(f"{i+1}: {nombre} ({genero}) [{estado}]")# Desempaquetar tupla
+        else :
+            print("no hay juegos")
+
 
 def complete_game():
     # Usar if not para lista vacía
@@ -71,10 +67,16 @@ while isActive:
                 isActive=False
 
             case 1:
-                pass
+                clear_screen()
+                add_game()
+                input("precione Enter para continuar...")
+                clear_screen()
 
             case 2:
-                pass
+                clear_screen()
+                view_games()
+                input("precione Enter para continuar...")
+                clear_screen()
 
             case 3:
                 pass
